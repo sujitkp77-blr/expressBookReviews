@@ -54,13 +54,13 @@ public_users.get('/author/:author',function (req, res) {
   //Write your code here
   //return res.status(300).json({message: "Yet to be implemented"});
   const author = req.params.author;
-  let authors = [];
+  let authors = { "booksbyAuthor": []};
   for (var isbn in books){
       if (books[isbn].author == author){
-        authors.push(books[isbn]);
+        authors["booksbyAuthor"].push(books[isbn]);
       }
   }
-  return res.send(JSON.stringify(authors));
+  return res.send(JSON.stringify(authors,null,'\t'));
 });
 
 // Get all books based on title
@@ -68,13 +68,13 @@ public_users.get('/title/:title',function (req, res) {
   //Write your code here
   //return res.status(300).json({message: "Yet to be implemented"});
   const title = req.params.title;
-  let titles = [];
+  let titles = {"booksbyTitle": []};
   for (var isbn in books){
       if (books[isbn].title == title){
-        titles.push(books[isbn]);
+        titles["booksbyTitle"].push(books[isbn]);
       }
   }
-  return res.send(JSON.stringify(titles));
+  return res.send(JSON.stringify(titles,null,'\t'));
 });
 
 //  Get book review
